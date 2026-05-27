@@ -35,3 +35,36 @@ class LinkedList:
             return
 
         # special case: the node to delete
+
+ # otherwise, find the node BEFORE the one we want to delete
+        current = self.head
+        while current.next is not None:
+            if current.next.data == data:
+                current.next = current.next.next   # skip over the target node
+                return
+            current = current.next
+
+    # display() prints out every value in the list in order
+    def display(self):
+        current = self.head
+        while current is not None:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("NULL")   # marks the end of the list
+
+
+# --- main program ---
+ll = LinkedList()
+
+ll.append(10)     # list: 10 -> NULL
+ll.append(20)     # list: 10 -> 20 -> NULL
+ll.append(30)     # list: 10 -> 20 -> 30 -> NULL
+ll.append(40)     # list: 10 -> 20 -> 30 -> 40 -> NULL
+
+print("After appending:")
+ll.display()      # Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+ll.delete(20)     # remove the node holding 20
+
+print("After deleting 20:")
+ll.display()      # Output: 10 -> 30 -> 40 -> NULL
