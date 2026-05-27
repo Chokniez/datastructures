@@ -34,9 +34,12 @@ class LinkedList:
         if self.head is None:
             return
 
-        # special case: the node to delete
+        # special case: the node to delete is the head itself
+        if self.head.data == data:
+            self.head = self.head.next    # just move head forward
+            return
 
- # otherwise, find the node BEFORE the one we want to delete
+        # otherwise, find the node BEFORE the one we want to delete
         current = self.head
         while current.next is not None:
             if current.next.data == data:
